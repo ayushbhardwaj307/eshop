@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class EntityDTOConverter {
-
-
-
     public EshopUserDto convertToUserDTO(EshopUser customer){
         EshopUserDto customerDTO = new EshopUserDto();
         customerDTO.setFirstName(customer.getFirstName());

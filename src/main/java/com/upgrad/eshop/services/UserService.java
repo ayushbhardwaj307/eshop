@@ -10,7 +10,7 @@ public interface UserService {
     EshopUser createUser(EshopUser users) throws UserAlreadyExistsException;
     EshopUser getUser(String emailid, String password) throws UserDetailsNotfoundException;
     EshopUser getCustomerDetailsByEmail(String email) throws UserDetailsNotfoundException;
-    EshopUser getCustomerDetailsByUserName(String un) throws UserDetailsNotfoundException;
+    EshopUser getCustomerDetailsByUserName(String username) throws UserDetailsNotfoundException;
     UserDetails loadCustomerDetails(String username) throws UserDetailsNotfoundException;
     EshopUser getUserDetails(int id) throws UserDetailsNotfoundException;
 }

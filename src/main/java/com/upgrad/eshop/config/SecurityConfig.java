@@ -36,21 +36,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
 
     http.cors().and().httpBasic()
-        .disable()
-        .csrf()
-        .disable()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authorizeRequests()
-        .antMatchers("/auth/login")
-        .permitAll()
-        .antMatchers("/auth/register")
-        .permitAll()
-         .anyRequest()
-        .authenticated()
-        .and()
-        .apply(new JwtConfigurer(jwtTokenProvider));
+            .disable()
+            .csrf()
+            .disable()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+            .antMatchers("/auth/login")
+            .permitAll()
+            .antMatchers("/auth/register")
+            .permitAll()
+            .antMatchers("/users/details")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .apply(new JwtConfigurer(jwtTokenProvider));
   }
 
   @Bean

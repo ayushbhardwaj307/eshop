@@ -9,11 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DTOEntityConverter {
-
-
-
-
-
     public EshopUser convertToUserEntity(EshopUserDto userDto) throws UserDetailsNotfoundException, UserAlreadyExistsException {
         EshopUser usersData = new EshopUser();
         usersData.setFirstName(userDto.getFirstName());
