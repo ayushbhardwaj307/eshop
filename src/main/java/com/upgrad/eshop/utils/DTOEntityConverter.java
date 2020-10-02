@@ -1,7 +1,9 @@
 package com.upgrad.eshop.utils;
 
+import com.upgrad.eshop.dtos.EshopShippingAddressDto;
 import com.upgrad.eshop.dtos.EshopUserDto;
 import com.upgrad.eshop.dtos.LoginDTO;
+import com.upgrad.eshop.entities.EshopShippingAddress;
 import com.upgrad.eshop.entities.EshopUser;
 import com.upgrad.eshop.exceptions.UserAlreadyExistsException;
 import com.upgrad.eshop.exceptions.UserDetailsNotfoundException;
@@ -31,10 +33,15 @@ public class DTOEntityConverter {
         return usersData;
     }
 
-
-
-
-
-
-
+    public EshopShippingAddress convertToAddressEntity(EshopShippingAddressDto addressDto) throws UserDetailsNotfoundException, UserAlreadyExistsException {
+        EshopShippingAddress addressData= new EshopShippingAddress();
+        addressData.setCity(addressDto.getCity());
+        addressData.setLandmark(addressDto.getLandmark());
+        addressData.setName(addressDto.getName());
+        addressData.setPhone(addressDto.getPhone());
+        addressData.setState(addressDto.getState());
+        addressData.setStreet(addressDto.getStreet());
+        addressData.setZipcode(addressDto.getZipcode());
+        return addressData;
+    }
 }

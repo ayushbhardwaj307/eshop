@@ -13,4 +13,5 @@ public interface UserService {
     EshopUser getCustomerDetailsByUserName(String username) throws UserDetailsNotfoundException;
     UserDetails loadCustomerDetails(String username) throws UserDetailsNotfoundException;
     EshopUser getUserDetails(int id) throws UserDetailsNotfoundException;
+    public EshopUser getCustomerDetailsById(int id) throws UserDetailsNotfoundException;
 }
