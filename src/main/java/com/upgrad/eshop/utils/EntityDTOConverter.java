@@ -1,8 +1,10 @@
 package com.upgrad.eshop.utils;
 
+import com.upgrad.eshop.dtos.EshopProductDto;
 import com.upgrad.eshop.dtos.EshopShippingAddressDto;
 import com.upgrad.eshop.dtos.EshopUserDto;
 import com.upgrad.eshop.dtos.LoginDTO;
+import com.upgrad.eshop.entities.EshopProduct;
 import com.upgrad.eshop.entities.EshopShippingAddress;
 import com.upgrad.eshop.entities.EshopUser;
 import com.upgrad.eshop.exceptions.UserAlreadyExistsException;
@@ -51,5 +53,19 @@ public class EntityDTOConverter {
         addressDto.setZipcode(address.getZipcode());
         addressDto.setUser(address.getUser());
         return addressDto;
+    }
+
+    public EshopProductDto convertToProductDto(EshopProduct product)  {
+        EshopProductDto productDto= new EshopProductDto();
+        productDto.setAvailableItems(product.getAvailable_items());
+        productDto.setCategory(product.getCategory());
+        productDto.setDescription(product.getDescription());
+        productDto.setImageUrl(product.getImage_url());
+        productDto.setManufacturer(product.getManufacturer());
+        productDto.setName(product.getName());
+        productDto.setPrice(product.getPrice());
+        productDto.setCreated(product.getCreated());
+        productDto.setUpdated(product.getUpdated());
+        return productDto;
     }
 }

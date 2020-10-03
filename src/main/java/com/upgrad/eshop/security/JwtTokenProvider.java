@@ -33,11 +33,11 @@ public class JwtTokenProvider {
   }
 
     public String resolveToken(HttpServletRequest req) {
-      String bearerToken = req.getHeader("X-Access-Token");
-      if (bearerToken != null) {
-        return bearerToken.trim();
-      }
-      return null;
+        String bearerToken = req.getHeader("X-Access-Token");
+        if (bearerToken != null) {
+            return bearerToken.trim();
+        }
+        return null;
     }
 
     public boolean validateToken(String token) {
@@ -52,15 +52,15 @@ public class JwtTokenProvider {
         }
     }
     public String createToken(String username) {
-      Claims claims = Jwts.claims().setSubject(username);
-      Date now = new Date();
-      Date validity = new Date(now.getTime() + validityInMilliseconds);
-      return Jwts.builder()
-              .setClaims(claims)
-              .setIssuedAt(now)
-              .setExpiration(validity)
-              .signWith(SignatureAlgorithm.HS256, secretKey)
-              .compact();
+        Claims claims = Jwts.claims().setSubject(username);
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuedAt(now)
+                .setExpiration(validity)
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
     }
 
     public Authentication getAuthentication(String token) throws UserDetailsNotfoundException {
@@ -69,7 +69,7 @@ public class JwtTokenProvider {
     }
 
     public String getUsername(String token) {
-      return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
 }

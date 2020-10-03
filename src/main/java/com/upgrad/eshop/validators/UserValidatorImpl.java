@@ -18,7 +18,7 @@ public class UserValidatorImpl implements UserValidator {
         if(userDto.getPassword() == null || userDto.getPassword().length() <= 0   )
             throw new APIException("Invalid password");
         if(userDto.getPhoneNumber() == null || userDto.getPhoneNumber().length() <= 0   )
-            throw new APIException("Invalid password");
+            throw new APIException("Invalid contact number!");
     }
 
     public void validateuserLogin(LoginDTO user) throws APIException {

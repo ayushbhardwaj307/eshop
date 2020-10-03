@@ -21,9 +21,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public EshopUser getUserDetails(int id) throws UserDetailsNotfoundException {
-        EshopUser user =usersDAO.findById(id).orElseThrow(
+        return usersDAO.findById(id).orElseThrow(
                 ()->  new UserDetailsNotfoundException("User not found for " + id));
-        return user;
     }
 
     @Override
@@ -49,15 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public EshopUser getCustomerDetailsByEmail(String email) throws UserDetailsNotfoundException {
-        EshopUser customer = usersDAO.findByEmail(email).orElseThrow(
+        return usersDAO.findByEmail(email).orElseThrow(
                 ()->  new UserDetailsNotfoundException("User not found for email" + email));
-        return customer;
     }
 
    public EshopUser getCustomerDetailsByUserName(String username) throws UserDetailsNotfoundException {
-        EshopUser customer = usersDAO.findByUserName(username).orElseThrow(
-                ()->  new UserDetailsNotfoundException("User not found for " + username));
-        return customer;
+       return usersDAO.findByUserName(username).orElseThrow(
+               ()->  new UserDetailsNotfoundException("User not found for " + username));
     }
 
     @Override
@@ -69,8 +66,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public EshopUser getCustomerDetailsById(int id) throws UserDetailsNotfoundException {
-        EshopUser customer = usersDAO.findById(id).orElseThrow(
+        return usersDAO.findById(id).orElseThrow(
                 ()->  new UserDetailsNotfoundException("User not found for id" + id));
-        return customer;
     }
 }

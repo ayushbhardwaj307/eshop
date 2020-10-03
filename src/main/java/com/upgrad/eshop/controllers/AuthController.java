@@ -99,6 +99,8 @@ public class AuthController {
             }
             if(!customerDTO.getUserName().equalsIgnoreCase("admin")){
                 customerDTO.setRole("USER");
+            }else{
+                customerDTO.setRole("ADMIN");
             }
 
             userValidator.validateUser(customerDTO);
@@ -134,17 +136,10 @@ public class AuthController {
             if(!savedCustomer.getUserName().equals(userName)){
                 throw new BadCredentialsException("This username has not been registered!");
             }
-            if(!bCryptPasswordEncoder.matches(password, savedCustomer.getPassword())){
-                throw new BadCredentialsException("Invalid Credentials");
-            }
             String token = jwtTokenProvider.createToken(userName);
             bCryptPasswordEncoder.encode(password);
             LoginDTO savedCustomerDTO = entityDTOConverter.convertToLginDTO(savedCustomer);
             savedCustomerDTO.setJwtToken(token);
             return ResponseEntity.status(HttpStatus.OK).body(savedCustomerDTO);
-
     }
-
-
-
 }

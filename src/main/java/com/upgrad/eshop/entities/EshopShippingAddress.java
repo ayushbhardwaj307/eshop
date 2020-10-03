@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +32,7 @@ public class EshopShippingAddress {
     @JsonBackReference
     @ManyToOne
     private EshopUser user;
+    @OneToMany(mappedBy = "eshopShippingAddress" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<EshopOrder> orders;
 
 }

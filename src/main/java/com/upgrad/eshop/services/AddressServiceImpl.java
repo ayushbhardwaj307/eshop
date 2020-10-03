@@ -13,7 +13,6 @@ public class AddressServiceImpl implements AddressService {
     @Qualifier("eshopShippingDAO")
     private EshopShippingAddressDAO addressDAO;
 
-
     @Override
     public EshopShippingAddress createAddress(EshopShippingAddress address) {
         return addressDAO.save(address);

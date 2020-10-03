@@ -37,6 +37,19 @@ public class EshopUser {
     private String userName;
     @OneToMany(mappedBy = "user" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<EshopShippingAddress> eshopShippingAddresses;
+    @OneToMany(mappedBy = "eshopUser" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<EshopOrder> orders;
     public EshopUser(){
+    }
+    public EshopUser(LocalDateTime created,String email, String firstName, String lastName, String password, String phoneNo, String role, LocalDateTime updated, String userName) {
+        this.created = created;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.phoneNo = phoneNo;
+        this.role = role;
+        this.updated = updated;
+        this.userName = userName;
     }
 }
