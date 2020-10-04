@@ -11,4 +11,5 @@ public interface ProductService {
     EshopProduct getProductDetailsByGet(String category,String name) throws ProductDetailsNotFound;
     EshopProduct getProductDetailsById(int id) throws ProductDetailsNotFound;
     void deleteProduct(EshopProduct product);
+    double getProductAmountById(int id) throws ProductDetailsNotFound ;
 }

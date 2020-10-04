@@ -55,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             .antMatchers("/products/{id}")
             .permitAll()
+            .antMatchers("/orders")
+            .permitAll()
             .anyRequest()
             .authenticated()
             .and()

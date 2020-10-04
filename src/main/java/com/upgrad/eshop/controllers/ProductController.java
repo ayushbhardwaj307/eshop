@@ -41,6 +41,7 @@ public class ProductController {
     @PostMapping(value = "/products")
     @ResponseBody
     public ResponseEntity saveProduct(@RequestBody EshopProductDto productDto, @RequestHeader(value = "X-ACCESS-TOKEN") String accessToken) throws UserAlreadyExistsException, APIException, UserDetailsNotfoundException, CustomException {
+        System.out.println("Saving Product");
         String username = jwtTokenProvider.getUsername(accessToken);
         if(username == null)
             throw new APIException("Please Login first to access this endpoint!");
@@ -58,6 +59,7 @@ public class ProductController {
     @GetMapping( value = "/products")
     @ResponseBody
     public ResponseEntity getUserDetails( @RequestParam (value="Category") String category, @RequestParam (value="Direction") String direction, @RequestParam (value="Name") String name, @RequestParam (value="Page Number")  int pageno, @RequestParam (value="Page Size") int pagesz, @RequestParam (value="Sort By") String sortBy) throws ProductDetailsNotFound {
+        System.out.println("Getting user details");
         EshopProduct eshopProduct=productService.getProductDetailsByGet(category,name);
         EshopProductDto savedProductDTO=entityDTOConverter.convertToProductDto(eshopProduct);
         return ResponseEntity.status(HttpStatus.OK).body(savedProductDTO);
@@ -66,7 +68,7 @@ public class ProductController {
     @GetMapping(value = "/products/{id}")
     @ResponseBody
     public ResponseEntity getProductDetailsById(@PathVariable Integer id) throws ProductDetailsNotFound {
-
+        System.out.println("Getting Product details");
         EshopProduct eshopProduct=productService.getProductDetailsById(id);
         if (eshopProduct==null) {
             CustomResponse response = new CustomResponse(LocalDateTime.now(), "No Product found for ID - " + id + "!", 400);
@@ -79,7 +81,7 @@ public class ProductController {
     @PutMapping( value = "/products/{id}")
     @ResponseBody
     public ResponseEntity updateProductDetailsById(@PathVariable int id, @RequestBody EshopProductDto productDto, @RequestHeader(value = "X-ACCESS-TOKEN")  String accessToken) throws ProductDetailsNotFound, APIException, UserDetailsNotfoundException, CustomException {
-
+        System.out.println("Updating Product Details");
         String username = jwtTokenProvider.getUsername(accessToken);
         if(username == null)
             throw new APIException("Please Login first to access this endpoint!");
@@ -122,7 +124,7 @@ public class ProductController {
     @DeleteMapping(value = "/products/{id}")
     @ResponseBody
     public ResponseEntity deleteProductDetailsById( @PathVariable Integer id, @RequestHeader(value = "X-ACCESS-TOKEN")  String accessToken  ) throws ProductDetailsNotFound, APIException, CustomException, UserDetailsNotfoundException {
-
+        System.out.println("Deleting Product Details");
         String username = jwtTokenProvider.getUsername(accessToken);
         if(username == null)
             throw new APIException("Please Login first to access this endpoint!");
@@ -143,6 +145,7 @@ public class ProductController {
     @GetMapping(value = "/products/categories")
     @ResponseBody
     public ResponseEntity getProductCategories() throws ProductDetailsNotFound {
+        System.out.println("Getting Product Categories");
         List<String> categories=productService.getProductCategories();
         return ResponseEntity.status(HttpStatus.OK).body(categories);
     }

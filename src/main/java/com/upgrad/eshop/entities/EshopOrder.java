@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Data
 public class EshopOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int id;
 
     @Column
@@ -23,15 +23,12 @@ public class EshopOrder {
     @Column
     private LocalDateTime orderDate;
 
-    @JsonBackReference
     @ManyToOne
     private EshopUser eshopUser;
 
-    @JsonBackReference
     @ManyToOne
     private EshopProduct eshopProduct;
 
-    @JsonBackReference
     @ManyToOne
     private EshopShippingAddress eshopShippingAddress;
 }

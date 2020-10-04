@@ -1,6 +1,7 @@
 package com.upgrad.eshop.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,6 @@ import java.util.List;
 @Setter
 @Entity
 public class EshopShippingAddress {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -34,5 +34,4 @@ public class EshopShippingAddress {
     private EshopUser user;
     @OneToMany(mappedBy = "eshopShippingAddress" , fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<EshopOrder> orders;
-
 }

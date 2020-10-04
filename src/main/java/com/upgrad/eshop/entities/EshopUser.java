@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 public class EshopUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private int id;
     @Column
     private LocalDateTime created;

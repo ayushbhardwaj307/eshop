@@ -40,7 +40,8 @@ public class ShippingAddressController {
 
     @PostMapping( value = "/user-addresses")
     @ResponseBody
-    public ResponseEntity addAddress(@RequestBody EshopShippingAddressDto addressDto, @RequestHeader(value = "X-ACCESS-TOKEN") String accessToken) throws UserAlreadyExistsException, APIException, UserDetailsNotfoundException,CustomException {
+    public ResponseEntity addAddress(@RequestBody EshopShippingAddressDto addressDto, @RequestHeader(value = "X-ACCESS-TOKEN") String accessToken) throws UserAlreadyExistsException, APIException, UserDetailsNotfoundException, CustomException {
+        System.out.println("Adding Address");
         String username = jwtTokenProvider.getUsername(accessToken);
         if(username == null)
             throw new APIException("Please Login first to access this endpoint!");

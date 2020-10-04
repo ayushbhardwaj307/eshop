@@ -1,20 +1,31 @@
 package com.upgrad.eshop.utils;
 
-import com.upgrad.eshop.dtos.EshopProductDto;
-import com.upgrad.eshop.dtos.EshopShippingAddressDto;
-import com.upgrad.eshop.dtos.EshopUserDto;
-import com.upgrad.eshop.dtos.LoginDTO;
+import com.upgrad.eshop.dtos.*;
+import com.upgrad.eshop.entities.EshopOrder;
 import com.upgrad.eshop.entities.EshopProduct;
 import com.upgrad.eshop.entities.EshopShippingAddress;
 import com.upgrad.eshop.entities.EshopUser;
+import com.upgrad.eshop.exceptions.AddressNotFound;
+import com.upgrad.eshop.exceptions.ProductDetailsNotFound;
 import com.upgrad.eshop.exceptions.UserAlreadyExistsException;
 import com.upgrad.eshop.exceptions.UserDetailsNotfoundException;
+import com.upgrad.eshop.services.AddressService;
+import com.upgrad.eshop.services.ProductService;
+import com.upgrad.eshop.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
 @Component
 public class DTOEntityConverter {
+    @Autowired
+    UserService userService;
+    @Autowired
+    ProductService productService;
+    @Autowired
+    AddressService addressService;
+
     public EshopUser convertToUserEntity(EshopUserDto userDto) throws UserDetailsNotfoundException, UserAlreadyExistsException {
         EshopUser usersData = new EshopUser();
         usersData.setFirstName(userDto.getFirstName());
@@ -61,5 +72,14 @@ public class DTOEntityConverter {
         productData.setPrice(productDto.getPrice());
         productData.setUpdated(LocalDateTime.now());
         return productData;
+    }
+
+    public EshopOrder convertToOrderEntity(EshopOrderDto orderDto) throws ProductDetailsNotFound, AddressNotFound {
+        EshopOrder orderData= new EshopOrder();
+        orderData.setEshopProduct(productService.getProductDetailsById((orderDto.getProductId())));
+        orderData.setEshopShippingAddress(addressService.getAddressDetailsById(orderDto.getAddressId()));
+        orderData.setAmount(productService.getProductAmountById(orderDto.getProductId()));
+        orderData.setOrderDate(LocalDateTime.now());
+        return orderData;
     }
 }

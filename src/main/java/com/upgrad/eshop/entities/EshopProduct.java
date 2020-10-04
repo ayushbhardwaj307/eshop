@@ -15,7 +15,7 @@ import java.util.List;
 public class EshopProduct {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int product_id;
     @Column
     private int available_items;

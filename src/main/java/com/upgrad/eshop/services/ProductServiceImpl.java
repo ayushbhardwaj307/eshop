@@ -31,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
         eshopProductDAO.delete(product);
     }
 
+    @Override
     public EshopProduct getProductDetailsByGet(String category,String name) throws ProductDetailsNotFound {
         EshopProduct product=new EshopProduct();
         if(category!=null) {
@@ -45,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
+    @Override
     public EshopProduct getProductDetailsById(int id) throws ProductDetailsNotFound {
         return eshopProductDAO.findById(id).orElseThrow(
                 () -> new ProductDetailsNotFound("Product not found for " + id));
@@ -58,5 +60,12 @@ public class ProductServiceImpl implements ProductService {
             categories.add(p.getCategory());
         }
         return categories;
+    }
+
+    @Override
+    public double getProductAmountById(int id) throws ProductDetailsNotFound {
+        EshopProduct product=eshopProductDAO.findById(id).orElseThrow(
+                () -> new ProductDetailsNotFound("Product not found for " + id));
+        return product.getPrice();
     }
 }

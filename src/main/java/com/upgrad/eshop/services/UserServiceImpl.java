@@ -47,11 +47,13 @@ public class UserServiceImpl implements UserService {
         return usersDAO.findByEmail(emailid).get();
     }
 
+    @Override
     public EshopUser getCustomerDetailsByEmail(String email) throws UserDetailsNotfoundException {
         return usersDAO.findByEmail(email).orElseThrow(
                 ()->  new UserDetailsNotfoundException("User not found for email" + email));
     }
 
+    @Override
    public EshopUser getCustomerDetailsByUserName(String username) throws UserDetailsNotfoundException {
        return usersDAO.findByUserName(username).orElseThrow(
                ()->  new UserDetailsNotfoundException("User not found for " + username));
@@ -65,6 +67,7 @@ public class UserServiceImpl implements UserService {
         return  new User(user.getEmail(), user.getPassword() , new ArrayList<>());
     }
 
+    @Override
     public EshopUser getCustomerDetailsById(int id) throws UserDetailsNotfoundException {
         return usersDAO.findById(id).orElseThrow(
                 ()->  new UserDetailsNotfoundException("User not found for id" + id));
